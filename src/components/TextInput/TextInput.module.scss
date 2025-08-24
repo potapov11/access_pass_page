@@ -1,0 +1,11 @@
+.text_input {
+  margin-bottom: 10px;
+
+  &_error {
+    display: flex;
+    justify-content: end;
+    font-size: 12px;
+    min-height: 14px;
+    color: var(--red-error);
+  }
+}

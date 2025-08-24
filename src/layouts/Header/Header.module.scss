@@ -1,0 +1,20 @@
+.header {
+  position: fixed;
+  width: 100%;
+  color: #000029;
+  background-color: #fff;
+
+  &_container {
+    max-width: 1440px;
+  }
+
+  &_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    &_item {
+      margin-right: 10px;
+    }
+  }
+}

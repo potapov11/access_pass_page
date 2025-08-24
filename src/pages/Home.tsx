@@ -1,5 +1,10 @@
-function Home() {
-  return <h1>Hello World</h1>;
-}
+import { Header } from '../layouts/Header/Header';
 
-export default Home;
+export const Home = () => {
+  return (
+    <div>
+      {/* <Header /> */}
+      <h1>Hello World Home</h1>
+    </div>
+  );
+};
