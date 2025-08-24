@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import { TErrors, TFieldsPerson } from '../../utils/types';
 
-export const useValidate = (fieldsPerson) => {
-  const [errors, setErrors] = useState({});
+export const useValidate = (fieldsPerson: TFieldsPerson) => {
+  const [errors, setErrors] = useState<TErrors>({});
 
   useEffect(() => {
-    const newErrors = {};
+    const newErrors: TErrors = {};
     if (!fieldsPerson.firstname) {
       newErrors.firstname = 'Поле имя не должно быть пустым';
     } else if (fieldsPerson.firstname.length < 2) {

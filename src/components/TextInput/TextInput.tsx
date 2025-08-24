@@ -1,5 +1,6 @@
 import { Input, Space } from 'antd';
 import styles from './TextInput.module.scss';
+import { TextInputProps } from '../../utils/types';
 
 export const TextInput = ({
   placeholder,
@@ -7,7 +8,8 @@ export const TextInput = ({
   onChange,
   errorText,
   isError,
-}) => {
+  name,
+}: TextInputProps) => {
   return (
     <div className={styles.text_input}>
       <Input
@@ -15,6 +17,7 @@ export const TextInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        name={name}
       />
       <div className={styles.text_input_error}>
         <span>{errorText ? errorText : ''}</span>

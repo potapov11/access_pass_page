@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import styles from './ResponsePersonForm.module.scss';
-import { Space } from 'antd';
 import { TextInput } from '../TextInput/TextInput';
 import { useValidate } from '../hooks/UseValidate';
+import { TFieldsPerson } from '../../utils/types';
 
 export const ResponsePersonForm = () => {
-  const [fieldsPerson, setFieldsPerson] = useState({
+  const [fieldsPerson, setFieldsPerson] = useState<TFieldsPerson>({
     firstname: '',
     lastname: '',
   });
 
   const errors = useValidate(fieldsPerson);
-  console.log(errors, 'errors');
 
-  const handleChangeFields = (e, name) => {
-    const value = e.target.value;
+  const handleChangeFields: React.ChangeEventHandler<HTMLInputElement> = (
+    e
+  ) => {
+    const { value, name } = e.target;
 
     setFieldsPerson((prev) => ({
       ...prev,
@@ -27,17 +28,19 @@ export const ResponsePersonForm = () => {
       <h2 className={styles.form_title}>Форма ответственного</h2>
       <TextInput
         placeholder={'Имя'}
+        name="firstname"
         value={fieldsPerson.firstname}
-        onChange={(e) => handleChangeFields(e, 'firstname')}
+        onChange={(e) => handleChangeFields(e)}
         errorText={errors.firstname}
-        isError={errors.firstname?.length}
+        isError={!!errors.firstname}
       />
       <TextInput
         placeholder={'Фамилия'}
         value={fieldsPerson.lastname}
-        onChange={(e) => handleChangeFields(e, 'lastname')}
+        name="lastname"
+        onChange={(e) => handleChangeFields(e)}
         errorText={errors.lastname}
-        isError={errors.lastname?.length}
+        isError={!!errors.lastname}
       />
     </div>
   );
