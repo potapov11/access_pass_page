@@ -15,6 +15,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "antd": "^5.27.1",
+    "dayjs": "^1.11.13",
     "install": "^0.13.0",
     "npm": "^11.5.2",
     "react": "^18.3.1",

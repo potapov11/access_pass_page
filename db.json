@@ -18,5 +18,32 @@
       "title": "HtmlWebpackPlugin Multiples HTML files",
       "tags": "[JS, webpack]"
     }
+  ],
+  "confirm_persons": [
+    {
+      "name": "Иванов Петр",
+      "job_title": "менеджер",
+      "email": "ivanov_company@company.ru"
+    },
+    {
+      "name": "Сидоров Алексей",
+      "job_title": "разработчик",
+      "email": "sidorov_alexey@company.ru"
+    },
+    {
+      "name": "Петрова Анна",
+      "job_title": "дизайнер",
+      "email": "petrova_anna@company.ru"
+    },
+    {
+      "name": "Кузнецов Дмитрий",
+      "job_title": "аналитик",
+      "email": "kuznetsov_dmitriy@company.ru"
+    },
+    {
+      "name": "Федорова Мария",
+      "job_title": "маркетолог",
+      "email": "fedorova_maria@company.ru"
+    }
   ]
 }

@@ -3,14 +3,24 @@ import styles from './ResponsePersonForm.module.scss';
 import { TextInput } from '../TextInput/TextInput';
 import { useValidate } from '../hooks/UseValidate';
 import { TFieldsPerson } from '../../utils/types';
-import { PhoneInputComponent } from '../PhoneInput/PhoneInput'; // твой обёрнутый компонент
+import { PhoneInputComponent } from '../PhoneInput/PhoneInput';
+import { PersonDatePicker } from '../PersonDatePicker/PersonDatePicker';
+import { DropDown } from '../DropDown/DropDown';
+import {
+  useGetConfirmPersonsQuery,
+  useLazyGetConfirmPersonsQuery,
+} from '../../services/api';
 
 export const ResponsePersonForm = () => {
+  const [selectData, setSelectData] = useState(null);
   const [fieldsPerson, setFieldsPerson] = useState<TFieldsPerson>({
     firstname: '',
     lastname: '',
     person_phone: '',
   });
+
+  // const { data, isLoading } = useLazyGetConfirmPersonsQuery();
+  const [getConfirmPersons, { isLoading }] = useLazyGetConfirmPersonsQuery();
 
   const errors = useValidate(fieldsPerson);
 
@@ -28,6 +38,33 @@ export const ResponsePersonForm = () => {
   const handleFocus = () => {
     if (!fieldsPerson.person_phone) {
       handleChange('person_phone', '+7');
+    }
+  };
+
+  const openDropDown = async () => {
+    try {
+      setTimeout(async () => {
+        const data = await getConfirmPersons();
+        const { data: personArray } = data;
+
+        if (personArray && personArray.length > 0) {
+          const renderSelectData = personArray.map((person) => ({
+            value: person.id,
+            label: (
+              <div>
+                <p>
+                  {person.name} {person.job_title}
+                </p>
+              </div>
+            ),
+          }));
+
+          console.log(renderSelectData, 'renderSelectData');
+          setSelectData(renderSelectData);
+        }
+      }, 500);
+    } catch (e) {
+      console.error(e.message);
     }
   };
 
@@ -61,6 +98,8 @@ export const ResponsePersonForm = () => {
         isError={!!errors.person_phone}
         errorText={errors.person_phone}
       />
+      <PersonDatePicker />
+      <DropDown openDropDown={openDropDown} selectData={selectData}></DropDown>
     </div>
   );
 };

@@ -18,8 +18,10 @@ body {
 
 .phone-input-add {
   width: 100% !important;
+  height: 32px;
 }
 .phone-input-add-error {
   width: 100% !important;
   border: 1px solid var(--red-error);
+  height: 32px;
 }
