@@ -21,26 +21,31 @@
   ],
   "confirm_persons": [
     {
+      "id": "1",
       "name": "Иванов Петр",
       "job_title": "менеджер",
       "email": "ivanov_company@company.ru"
     },
     {
+      "id": "2",
       "name": "Сидоров Алексей",
       "job_title": "разработчик",
       "email": "sidorov_alexey@company.ru"
     },
     {
+      "id": "3",
       "name": "Петрова Анна",
       "job_title": "дизайнер",
       "email": "petrova_anna@company.ru"
     },
     {
+      "id": "4",
       "name": "Кузнецов Дмитрий",
       "job_title": "аналитик",
       "email": "kuznetsov_dmitriy@company.ru"
     },
     {
+      "id": "5",
       "name": "Федорова Мария",
       "job_title": "маркетолог",
       "email": "fedorova_maria@company.ru"

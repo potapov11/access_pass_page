@@ -32,3 +32,24 @@ export interface IPhoneInputProps {
   isError: boolean;
   errorText: string | undefined;
 }
+
+export interface SelectOption {
+  value: string;
+  label: JSX.Element;
+}
+
+export interface IDroDownProps {
+  openDropDown: () => void;
+  name: string;
+  selectData: SelectOption[];
+  isError: boolean;
+  onChange: (arg: string) => void;
+  errorText: string;
+}
+
+export interface PersonData {
+  id: string;
+  name: string;
+  job_title: string;
+  email: string;
+}

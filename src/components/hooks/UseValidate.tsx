@@ -23,6 +23,9 @@ export const useValidate = (fieldsPerson: TFieldsPerson) => {
       newErrors.person_phone =
         'Поле номер телефона не должно быть меньше 11 знаков';
     }
+    if (!fieldsPerson.person_responsible_name) {
+      newErrors.person_responsible_name = 'Необходимо выбрать подтверждающего';
+    }
     setErrors(newErrors);
   }, [fieldsPerson]);
 

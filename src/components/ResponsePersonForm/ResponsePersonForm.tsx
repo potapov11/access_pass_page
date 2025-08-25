@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './ResponsePersonForm.module.scss';
 import { TextInput } from '../TextInput/TextInput';
 import { useValidate } from '../hooks/UseValidate';
-import { TFieldsPerson } from '../../utils/types';
+import { TFieldsPerson, SelectOption, PersonData } from '../../utils/types';
 import { PhoneInputComponent } from '../PhoneInput/PhoneInput';
 import { PersonDatePicker } from '../PersonDatePicker/PersonDatePicker';
 import { DropDown } from '../DropDown/DropDown';
@@ -10,13 +10,13 @@ import type { DatePickerProps } from 'antd';
 import { useLazyGetConfirmPersonsQuery } from '../../services/api';
 
 export const ResponsePersonForm = () => {
-  const [selectData, setSelectData] = useState(null);
+  const [selectData, setSelectData] = useState<SelectOption[] | null>(null);
   const [fieldsPerson, setFieldsPerson] = useState<TFieldsPerson>({
     firstname: '',
     lastname: '',
     person_phone: '',
     person_date: '',
-    person_resppnsible_name: '',
+    person_responsible_name: '',
   });
 
   useEffect(() => {
@@ -49,12 +49,16 @@ export const ResponsePersonForm = () => {
   };
 
   const handleDataPicker: DatePickerProps['onChange'] = (date, dateString) => {
-    console.log(date, 'date');
-    console.log(dateString, 'dateString');
-
     setFieldsPerson((prev) => ({
       ...prev,
       person_date: dateString,
+    }));
+  };
+
+  const handleDropdown = (value: string) => {
+    setFieldsPerson((prev) => ({
+      ...prev,
+      person_responsible_name: value,
     }));
   };
 
@@ -64,19 +68,18 @@ export const ResponsePersonForm = () => {
         const data = await getConfirmPersons();
         const { data: personArray } = data;
 
+        console.log(personArray, 'personArray');
+
         if (personArray && personArray.length > 0) {
-          const renderSelectData = personArray.map((person) => ({
+          const renderSelectData = personArray.map((person: PersonData) => ({
             value: person.id,
             label: (
-              <div>
-                <p>
-                  {person.name} {person.job_title}
-                </p>
-              </div>
+              <p>
+                {person.name} {person.job_title}
+              </p>
             ),
           }));
 
-          console.log(renderSelectData, 'renderSelectData');
           setSelectData(renderSelectData);
         }
       }, 500);
@@ -115,11 +118,15 @@ export const ResponsePersonForm = () => {
         isError={!!errors.person_phone}
         errorText={errors.person_phone}
       />
+
       <PersonDatePicker onChange={handleDataPicker} />
+
       <DropDown
-        isError={''}
+        onChange={handleDropdown}
         openDropDown={openDropDown}
         selectData={selectData}
+        isError={!!errors.person_responsible_name}
+        errorText={errors.person_responsible_name}
       ></DropDown>
     </div>
   );

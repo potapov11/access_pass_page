@@ -1,12 +1,15 @@
 import { Select } from 'antd';
 import styles from './DropDown.module.scss';
 import { Spinner } from '../UI/Spinner/Spinner';
+import { IDroDownProps } from '../../utils/types';
 
-export const DropDown = ({ openDropDown, selectData, isError }) => {
-  const onChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
-
+export const DropDown = ({
+  openDropDown,
+  selectData,
+  isError,
+  onChange,
+  errorText,
+}: IDroDownProps) => {
   const onSearch = (value: string) => {
     console.log('search:', value);
   };
@@ -14,15 +17,20 @@ export const DropDown = ({ openDropDown, selectData, isError }) => {
   const spinner = [{ value: '', label: <Spinner /> }];
 
   return (
-    <Select
-      className={styles.select}
-      showSearch
-      placeholder="Выберите подтверждающего"
-      optionFilterProp="label"
-      onChange={onChange}
-      onSearch={onSearch}
-      options={selectData && selectData.length > 0 ? selectData : spinner}
-      onOpenChange={openDropDown}
-    />
+    <div>
+      <Select
+        className={styles.select}
+        showSearch
+        placeholder="Выберите подтверждающего"
+        optionFilterProp="label"
+        onChange={onChange}
+        onSearch={onSearch}
+        options={selectData && selectData.length > 0 ? selectData : spinner}
+        onOpenChange={openDropDown}
+      />
+      <div className={styles.select_error}>
+        <span>{errorText ? errorText : ''}</span>
+      </div>
+    </div>
   );
 };
