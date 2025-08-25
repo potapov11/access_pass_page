@@ -10,10 +10,6 @@ export const DropDown = ({
   onChange,
   errorText,
 }: IDroDownProps) => {
-  const onSearch = (value: string) => {
-    console.log('search:', value);
-  };
-
   const spinner = [{ value: '', label: <Spinner /> }];
 
   return (

@@ -6,8 +6,6 @@ export const Header = () => {
   const { data } = useGetCategoriesQuery();
   const { data: dataProduct } = useGetProductsQuery();
 
-  console.log(dataProduct, 'dataProduct');
-
   return (
     <header className={styles.header}>
       <div className={styles.header_container}>
