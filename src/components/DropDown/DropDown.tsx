@@ -2,7 +2,7 @@ import { Select } from 'antd';
 import styles from './DropDown.module.scss';
 import { Spinner } from '../UI/Spinner/Spinner';
 
-export const DropDown = ({ openDropDown, isLoading, selectData }) => {
+export const DropDown = ({ openDropDown, selectData, isError }) => {
   const onChange = (value: string) => {
     console.log(`selected ${value}`);
   };

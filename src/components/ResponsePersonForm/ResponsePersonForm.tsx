@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './ResponsePersonForm.module.scss';
 import { TextInput } from '../TextInput/TextInput';
 import { useValidate } from '../hooks/UseValidate';
@@ -6,10 +6,8 @@ import { TFieldsPerson } from '../../utils/types';
 import { PhoneInputComponent } from '../PhoneInput/PhoneInput';
 import { PersonDatePicker } from '../PersonDatePicker/PersonDatePicker';
 import { DropDown } from '../DropDown/DropDown';
-import {
-  useGetConfirmPersonsQuery,
-  useLazyGetConfirmPersonsQuery,
-} from '../../services/api';
+import type { DatePickerProps } from 'antd';
+import { useLazyGetConfirmPersonsQuery } from '../../services/api';
 
 export const ResponsePersonForm = () => {
   const [selectData, setSelectData] = useState(null);
@@ -17,7 +15,13 @@ export const ResponsePersonForm = () => {
     firstname: '',
     lastname: '',
     person_phone: '',
+    person_date: '',
+    person_resppnsible_name: '',
   });
+
+  useEffect(() => {
+    console.log(fieldsPerson, 'fieldsPerson');
+  }, [fieldsPerson]);
 
   // const { data, isLoading } = useLazyGetConfirmPersonsQuery();
   const [getConfirmPersons, { isLoading }] = useLazyGetConfirmPersonsQuery();
@@ -25,6 +29,9 @@ export const ResponsePersonForm = () => {
   const errors = useValidate(fieldsPerson);
 
   const handleChange = (name: string, value: string) => {
+    console.log(name, 'name handleChange');
+    console.log(value, 'value handleChange');
+
     setFieldsPerson((prev) => ({
       ...prev,
       [name]: value,
@@ -39,6 +46,16 @@ export const ResponsePersonForm = () => {
     if (!fieldsPerson.person_phone) {
       handleChange('person_phone', '+7');
     }
+  };
+
+  const handleDataPicker: DatePickerProps['onChange'] = (date, dateString) => {
+    console.log(date, 'date');
+    console.log(dateString, 'dateString');
+
+    setFieldsPerson((prev) => ({
+      ...prev,
+      person_date: dateString,
+    }));
   };
 
   const openDropDown = async () => {
@@ -98,8 +115,12 @@ export const ResponsePersonForm = () => {
         isError={!!errors.person_phone}
         errorText={errors.person_phone}
       />
-      <PersonDatePicker />
-      <DropDown openDropDown={openDropDown} selectData={selectData}></DropDown>
+      <PersonDatePicker onChange={handleDataPicker} />
+      <DropDown
+        isError={''}
+        openDropDown={openDropDown}
+        selectData={selectData}
+      ></DropDown>
     </div>
   );
 };
