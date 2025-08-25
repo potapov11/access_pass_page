@@ -1,34 +1,28 @@
 import React from 'react';
 import PhoneInput from 'react-phone-input-2';
+import { IPhoneInputProps } from '../../utils/types';
 import 'react-phone-input-2/lib/style.css';
+import styles from './PhoneInput.module.scss';
 
-interface PhoneInputProps {
-  value: string;
-  name?: string;
-  onChange: (
-    value: string,
-    data: any,
-    event: React.ChangeEvent<HTMLInputElement>,
-    formattedValue: string
-  ) => void;
-  onFocus?: () => void;
-}
-
-export const PhoneInputComponent: React.FC<PhoneInputProps> = ({
+export const PhoneInputComponent = ({
   value,
   name = 'phone',
   onChange,
   onFocus,
-}) => {
+  isError,
+  errorText,
+}: IPhoneInputProps) => {
+  console.log(isError, 'isError');
+
   return (
-    <div>
+    <div className={styles.phone_input}>
       <PhoneInput
-        country="ru" // или "us", в зависимости от нужной страны по умолчанию
-        onlyCountries={['ru', 'us', 'kz', 'ua']} // опционально: ограничить выбор
-        preferredCountries={['ru', 'us']}
+        country="ru"
+        onlyCountries={['ru']}
+        preferredCountries={['ru']}
+        disableDropdown={true}
         value={value}
         onChange={(phone, data, event, formattedValue) => {
-          // Передаём имя поля, если используешь один обработчик для нескольких полей
           onChange(phone, data, event, formattedValue);
         }}
         inputProps={{
@@ -40,10 +34,17 @@ export const PhoneInputComponent: React.FC<PhoneInputProps> = ({
         containerClass={
           value ? 'phone-input-container filled' : 'phone-input-container'
         }
-        inputClass="phone-input"
+        inputClass={
+          !isError
+            ? 'phone-input phone-input-add'
+            : 'phone-input phone-input-add-error'
+        }
         dropdownClass="phone-dropdown"
         placeholder="+7 (999) 123-45-67"
       />
+      <div className={styles.phone_input_error}>
+        <span>{errorText ? errorText : ''}</span>
+      </div>
     </div>
   );
 };

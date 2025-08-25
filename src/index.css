@@ -15,3 +15,11 @@ body {
   max-width: 1280px;
   margin: 0 auto;
 }
+
+.phone-input-add {
+  width: 100% !important;
+}
+.phone-input-add-error {
+  width: 100% !important;
+  border: 1px solid var(--red-error);
+}

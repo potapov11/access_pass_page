@@ -58,9 +58,9 @@ export const ResponsePersonForm = () => {
         name="person_phone"
         onChange={handlePhoneChange}
         onFocus={handleFocus}
+        isError={!!errors.person_phone}
+        errorText={errors.person_phone}
       />
-
-      <p>Текущий телефон: {fieldsPerson.person_phone}</p>
     </div>
   );
 };
