@@ -19,7 +19,7 @@ export type TFieldsPerson = {
   firstname: string;
   lastname: string;
   person_phone: string;
-  person_date: Dayjs;
+  person_date: Dayjs | string;
   person_responsible_name: string;
 };
 
