@@ -20,12 +20,7 @@ export const ResponsePersonForm = () => {
     person_responsible_name: '',
   });
 
-  useEffect(() => {
-    console.log(fieldsPerson, 'fieldsPerson');
-  }, [fieldsPerson]);
-
   const form = useSelector((state) => state.form);
-  console.log(form, 'form useSelector');
   const dispatch = useDispatch();
 
   const [getConfirmPersons, { isLoading }] = useLazyGetConfirmPersonsQuery();
@@ -75,8 +70,6 @@ export const ResponsePersonForm = () => {
       setTimeout(async () => {
         const data = await getConfirmPersons();
         const { data: personArray } = data;
-
-        console.log(personArray, 'personArray');
 
         if (personArray && personArray.length > 0) {
           const renderSelectData = personArray.map((person: PersonData) => ({
