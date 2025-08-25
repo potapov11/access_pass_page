@@ -17,7 +17,7 @@ export const DropDown = ({ openDropDown, isLoading, selectData }) => {
     <Select
       className={styles.select}
       showSearch
-      placeholder="Select a person"
+      placeholder="Выберите подтверждающего"
       optionFilterProp="label"
       onChange={onChange}
       onSearch={onSearch}

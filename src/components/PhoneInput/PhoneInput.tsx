@@ -12,7 +12,7 @@ export const PhoneInputComponent = ({
   isError,
   errorText,
 }: IPhoneInputProps) => {
-  console.log(isError, 'isError');
+  console.log(isError, 'isError PhoneInputComponent');
 
   return (
     <div className={styles.phone_input}>

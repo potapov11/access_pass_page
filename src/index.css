@@ -22,6 +22,6 @@ body {
 }
 .phone-input-add-error {
   width: 100% !important;
-  border: 1px solid var(--red-error);
+  border: 1px solid var(--red-error) !important;
   height: 32px;
 }
