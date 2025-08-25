@@ -48,7 +48,8 @@ export const ResponsePersonForm = () => {
     }
   };
 
-  const handleDataPicker: DatePickerProps['onChange'] = (date, dateString) => {
+  const handleDataPicker: DatePickerProps['onChange'] = ( dateString) => {
+    if (dateString) {
     setFieldsPerson((prev) => ({
       ...prev,
       person_date: dateString,

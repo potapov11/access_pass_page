@@ -1,3 +1,5 @@
+import { Dayjs } from 'dayjs';
+
 export type TextInputProps = {
   placeholder: string;
   value: string;
@@ -17,6 +19,8 @@ export type TFieldsPerson = {
   firstname: string;
   lastname: string;
   person_phone: string;
+  person_date: Dayjs;
+  person_responsible_name: string;
 };
 
 export interface IPhoneInputProps {
