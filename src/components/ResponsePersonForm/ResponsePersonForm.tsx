@@ -8,7 +8,8 @@ import { PersonDatePicker } from '../PersonDatePicker/PersonDatePicker';
 import { DropDown } from '../DropDown/DropDown';
 import type { DatePickerProps } from 'antd';
 import { useLazyGetConfirmPersonsQuery } from '../../services/api';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { addToForm } from '../../services/slices/pass_from_slice';
 export const ResponsePersonForm = () => {
   const [selectData, setSelectData] = useState<SelectOption[] | null>(null);
   const [fieldsPerson, setFieldsPerson] = useState<TFieldsPerson>({
@@ -23,19 +24,24 @@ export const ResponsePersonForm = () => {
     console.log(fieldsPerson, 'fieldsPerson');
   }, [fieldsPerson]);
 
-  // const { data, isLoading } = useLazyGetConfirmPersonsQuery();
+  const form = useSelector((state) => state.form);
+  console.log(form, 'form useSelector');
+  const dispatch = useDispatch();
+
   const [getConfirmPersons, { isLoading }] = useLazyGetConfirmPersonsQuery();
 
   const errors = useValidate(fieldsPerson);
 
   const handleChange = (name: string, value: string) => {
-    console.log(name, 'name handleChange');
-    console.log(value, 'value handleChange');
+    setFieldsPerson((prev) => {
+      const updatedFields = {
+        ...prev,
+        [name]: value,
+      };
+      dispatch(addToForm(updatedFields));
 
-    setFieldsPerson((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+      return updatedFields;
+    });
   };
 
   const handlePhoneChange = (value: string) => {
@@ -48,12 +54,13 @@ export const ResponsePersonForm = () => {
     }
   };
 
-  const handleDataPicker: DatePickerProps['onChange'] = ( dateString) => {
+  const handleDataPicker: DatePickerProps['onChange'] = (dateString) => {
     if (dateString) {
-    setFieldsPerson((prev) => ({
-      ...prev,
-      person_date: dateString,
-    }));
+      setFieldsPerson((prev) => ({
+        ...prev,
+        person_date: dateString,
+      }));
+    }
   };
 
   const handleDropdown = (value: string) => {
@@ -128,7 +135,7 @@ export const ResponsePersonForm = () => {
         selectData={selectData}
         isError={!!errors.person_responsible_name}
         errorText={errors.person_responsible_name}
-      ></DropDown>
+      />
     </div>
   );
 };
