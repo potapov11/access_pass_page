@@ -20,7 +20,6 @@ export const DropDown = ({
         placeholder="Выберите подтверждающего"
         optionFilterProp="label"
         onChange={onChange}
-        onSearch={onSearch}
         options={selectData && selectData.length > 0 ? selectData : spinner}
         onOpenChange={openDropDown}
       />

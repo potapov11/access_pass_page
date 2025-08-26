@@ -4,7 +4,7 @@ import { TErrors, TFieldsPerson } from '../../utils/types';
 export const useValidate = (fieldsPerson: TFieldsPerson) => {
   const [errors, setErrors] = useState<TErrors>({});
 
-  console.log(fieldsPerson, 'fieldsPerson');
+  // console.log(fieldsPerson, 'fieldsPerson');
 
   useEffect(() => {
     const newErrors: TErrors = {};

@@ -44,7 +44,6 @@ export interface SelectOption {
 
 export interface IDroDownProps {
   openDropDown: () => void;
-  name: string;
   selectData: SelectOption[];
   isError: boolean;
   onChange: (arg: string) => void;
