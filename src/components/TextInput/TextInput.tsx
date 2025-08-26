@@ -19,7 +19,7 @@ export const TextInput = ({
         onChange={onChange}
         name={name}
       />
-      <div className={styles.text_input_error}>
+      <div data-testid="span-wrap-test" className={styles.text_input_error}>
         <span>{errorText ? errorText : ''}</span>
       </div>
     </div>
