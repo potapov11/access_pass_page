@@ -17,6 +17,7 @@ export const useResponsePersonForm = () => {
   });
 
   const formFromStore = useSelector((state) => state.form.responsibleForm);
+  const AllFormFromStore = useSelector((state) => state.form);
   console.log(formFromStore, 'formFromStores');
   const dispatch = useDispatch();
 
@@ -26,7 +27,7 @@ export const useResponsePersonForm = () => {
 
   const [getConfirmPersons, { isLoading }] = useLazyGetConfirmPersonsQuery();
 
-  const errors = useValidate(fieldsPerson);
+  const errors = useValidate(AllFormFromStore);
 
   const handleChange = (name: string, value: string) => {
     setFieldsPerson((prev) => {

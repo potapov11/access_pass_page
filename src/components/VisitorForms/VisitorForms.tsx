@@ -4,16 +4,18 @@ import { Button } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { addVisitorForm } from '../../services/slices/pass_from_slice';
 import { visitorsDummyObj } from '../../utils/vars';
+import { useValidate } from '../hooks/UseValidate';
 
 export const VisitorForms = () => {
   const visitorsForm = useSelector((state) => state.form.visitorForms);
   const dispatch = useDispatch();
-  console.log(visitorsForm, 'visitorsForm');
 
   const pushVisitForm = () => {
-    console.log('pushVisitForm');
-    console.log(addVisitorForm);
-    dispatch(addVisitorForm(visitorsDummyObj));
+    const updatedVisitorDummyObj = {
+      ...visitorsDummyObj,
+      id: visitorsForm.length,
+    };
+    dispatch(addVisitorForm(updatedVisitorDummyObj));
   };
 
   return (
@@ -21,7 +23,9 @@ export const VisitorForms = () => {
       <h2 className={styles.visitor_form_title}>форма посетителя</h2>
       <div className={styles.visitor_form_wrap}>
         {visitorsForm?.length > 0
-          ? visitorsForm.map((item) => <VisitorForm key={item.id} />)
+          ? visitorsForm.map((visitor) => (
+              <VisitorForm visitorProps={visitor} key={visitor.id} />
+            ))
           : null}
       </div>
       <div

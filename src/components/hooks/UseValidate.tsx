@@ -3,29 +3,44 @@ import { TErrors, TFieldsPerson } from '../../utils/types';
 
 export const useValidate = (fieldsPerson: TFieldsPerson) => {
   const [errors, setErrors] = useState<TErrors>({});
+  const { responsibleForm, visitorForms } = fieldsPerson;
 
-  // console.log(fieldsPerson, 'fieldsPerson');
+  console.log(fieldsPerson, 'useValidate fieldsPerson');
 
   useEffect(() => {
-    const newErrors: TErrors = {};
+    const newErrors: TErrors = {
+      visitorFormErrors: [],
+    };
 
-    if (!fieldsPerson.firstname) {
+    if (!responsibleForm.firstname) {
       newErrors.firstname = 'Поле имя не должно быть пустым';
-    } else if (fieldsPerson.firstname.length < 2) {
+    } else if (responsibleForm.firstname.length < 2) {
       newErrors.firstname = 'Поле имя не должно быть меньше двух значений';
     }
-    if (!fieldsPerson.lastname) {
+    if (!responsibleForm.lastname) {
       newErrors.lastname = 'Поле фамилия не должно быть пустым';
-    } else if (fieldsPerson.lastname.length < 2) {
+    } else if (responsibleForm.lastname.length < 2) {
       newErrors.lastname = 'Поле фамилия не должно быть меньше двух значений';
     }
-    if (fieldsPerson.person_phone.length < 11) {
+    if (responsibleForm.person_phone.length < 11) {
       newErrors.person_phone =
         'Поле номер телефона не должно быть меньше 11 знаков';
     }
-    if (!fieldsPerson.person_responsible_name) {
+    if (!responsibleForm.person_responsible_name) {
       newErrors.person_responsible_name = 'Необходимо выбрать подтверждающего';
     }
+
+    visitorForms.forEach((element, index) => {
+      if (!element.name) {
+        newErrors.visitorFormErrors.push({
+          id: index,
+          error_name: 'Поле имя не должно быть пустым',
+        });
+      }
+    });
+
+    console.log(newErrors, 'newErrors');
+
     setErrors(newErrors);
   }, [fieldsPerson]);
 

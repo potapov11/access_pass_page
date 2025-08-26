@@ -12,9 +12,8 @@ const formResponseSlice = createSlice({
     },
     visitorForms: [
       {
+        name: '',
         id: 0,
-        firstname: '',
-        lastname: '',
       },
     ],
   },
@@ -44,8 +43,12 @@ const formResponseSlice = createSlice({
     addVisitorForm: (state, action) => {
       state.visitorForms.push(action.payload);
     },
+    updateVisitorForm: (state, action) => {
+      state.visitorForms = action.payload;
+    },
   },
 });
 
-export const { addToForm, addVisitorForm } = formResponseSlice.actions;
+export const { addToForm, addVisitorForm, updateVisitorForm } =
+  formResponseSlice.actions;
 export default formResponseSlice.reducer;

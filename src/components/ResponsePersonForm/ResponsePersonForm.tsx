@@ -1,15 +1,8 @@
-import { useEffect, useState } from 'react';
 import styles from './ResponsePersonForm.module.scss';
 import { TextInput } from '../TextInput/TextInput';
-import { useValidate } from '../hooks/UseValidate';
-// import { TFieldsPerson, SelectOption, PersonData } from '../../utils/types';
 import { PhoneInputComponent } from '../PhoneInput/PhoneInput';
 import { PersonDatePicker } from '../PersonDatePicker/PersonDatePicker';
 import { DropDown } from '../DropDown/DropDown';
-import type { DatePickerProps } from 'antd';
-import { useLazyGetConfirmPersonsQuery } from '../../services/api';
-import { useSelector, useDispatch } from 'react-redux';
-import { addToForm } from '../../services/slices/pass_from_slice';
 import { useResponsePersonForm } from './UseResponsePersonFrom';
 
 export const ResponsePersonForm = () => {
