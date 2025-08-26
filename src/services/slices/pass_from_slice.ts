@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const formSlice = createSlice({
+const formResponseSlice = createSlice({
   name: 'formSlice',
   initialState: {
     firstname: '',
@@ -25,8 +25,15 @@ const formSlice = createSlice({
       state.person_date = person_date;
       state.person_responsible_name = person_responsible_name;
     },
+    reset: (state) => {
+      state.firstname = '';
+      state.lastname = '';
+      state.person_phone = '';
+      state.person_date = '';
+      state.person_responsible_name = '';
+    },
   },
 });
 
-export const { addToForm } = formSlice.actions;
-export default formSlice.reducer;
+export const { addToForm } = formResponseSlice.actions;
+export default formResponseSlice.reducer;
