@@ -13,7 +13,7 @@ export const PhoneInputComponent = ({
   errorText,
 }: IPhoneInputProps) => {
   return (
-    <div className={styles.phone_input}>
+    <div className={styles.phone_input} data-testid="phone-input">
       <PhoneInput
         country="ru"
         onlyCountries={['ru']}
