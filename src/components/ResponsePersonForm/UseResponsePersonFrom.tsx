@@ -16,7 +16,8 @@ export const useResponsePersonForm = () => {
     person_responsible_name: '',
   });
 
-  const formFromStore = useSelector((state) => state.form);
+  const formFromStore = useSelector((state) => state.form.responsibleForm);
+  console.log(formFromStore, 'formFromStores');
   const dispatch = useDispatch();
 
   useEffect(() => {
