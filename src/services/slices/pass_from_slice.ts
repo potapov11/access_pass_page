@@ -14,6 +14,7 @@ const formResponseSlice = createSlice({
       {
         name: '',
         id: 0,
+        phone: '',
       },
     ],
   },

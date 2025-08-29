@@ -50,5 +50,41 @@
       "job_title": "маркетолог",
       "email": "fedorova_maria@company.ru"
     }
+  ],
+  "visitor_forms": [
+    {
+      "responsibleForm": {
+        "firstname": "sergey",
+        "lastname": "potapov",
+        "person_phone": "79523800353",
+        "person_date": "",
+        "person_responsible_name": ""
+      },
+      "visitorForms": [
+        {
+          "name": "sergey",
+          "id": 0,
+          "phone": "70523800353"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "responsibleForm": {
+        "firstname": "qwe",
+        "lastname": "qwe",
+        "person_phone": "72344323423",
+        "person_date": "",
+        "person_responsible_name": ""
+      },
+      "visitorForms": [
+        {
+          "name": "rty",
+          "id": 0,
+          "phone": "74234234234"
+        }
+      ],
+      "id": 2
+    }
   ]
 }

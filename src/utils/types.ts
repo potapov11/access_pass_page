@@ -33,7 +33,7 @@ export interface IPhoneInputProps {
     formattedValue: string
   ) => void;
   onFocus?: () => void;
-  isError: boolean;
+  isError: boolean | string;
   errorText: string | undefined;
 }
 
