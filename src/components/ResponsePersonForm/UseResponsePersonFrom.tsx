@@ -21,10 +21,6 @@ export const useResponsePersonForm = () => {
 
   const { data: personsResponseList } = useGetConfirmPersonsQuery();
 
-  useEffect(() => {
-    console.log(fieldsPerson, 'fieldsPerson after update');
-  }, [fieldsPerson]);
-
   const formFromStore = useSelector((state) => state.form.responsibleForm);
   const AllFormFromStore = useSelector((state) => state.form);
   const dispatch = useDispatch();
@@ -32,7 +28,6 @@ export const useResponsePersonForm = () => {
   useEffect(() => {
     setFieldsPerson(formFromStore);
     const { person_responsible_name: person_id } = formFromStore;
-    console.log(personsResponseList, 'personsResponseList');
     const targetResponsePerson = personsResponseList?.find(
       (item) => person_id === item.id
     );
@@ -84,8 +79,6 @@ export const useResponsePersonForm = () => {
   };
 
   const handleDropdown = (value: string) => {
-    console.log(value, 'value handleDropdown');
-
     setFieldsPerson((prev) => {
       const updatedFields = {
         ...prev,

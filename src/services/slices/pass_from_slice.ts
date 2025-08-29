@@ -28,8 +28,6 @@ const formResponseSlice = createSlice({
         person_responsible_name,
       } = action.payload;
 
-      console.log(action.payload, 'action.payload');
-
       state.responsibleForm.firstname = firstname;
       state.responsibleForm.lastname = lastname;
       state.responsibleForm.person_phone = person_phone;

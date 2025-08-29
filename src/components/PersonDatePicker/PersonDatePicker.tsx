@@ -8,12 +8,8 @@ export const PersonDatePicker = ({ onChange, value }) => {
   const dateFormat = 'YYYY-MM-DD';
   const formattedDate = localTodayDate.split('.').reverse().join('-');
 
-  console.log(value, 'value PersonDatePicker');
-
   // Преобразуем value в объект Dayjs, если оно не пустое
   const defaultValue = value ? dayjs(value) : null;
-
-  console.log(defaultValue, 'defaultValue');
 
   return (
     <DatePicker

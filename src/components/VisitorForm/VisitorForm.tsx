@@ -28,10 +28,6 @@ export const VisitorForm = ({ visitorProps }) => {
     phone: phone || '',
   });
 
-  useEffect(() => {
-    console.log(fieldsVisitor, 'fieldsVisitor');
-  }, [fieldsVisitor]);
-
   const updateReduxForm = (updatedFields) => {
     const updatedVisitorsForm = visitorsForm.map((item, index) => {
       if (index === id) {

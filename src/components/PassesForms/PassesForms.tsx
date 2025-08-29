@@ -12,7 +12,6 @@ export const PassesForms = () => {
   } = useGetFormsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
-  console.log(passes, 'passes');
 
   if (isError) return <ErrorText />;
   if (isLoading) return <Spinner />;

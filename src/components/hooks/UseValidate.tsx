@@ -5,9 +5,6 @@ export const useValidate = (fieldsPerson: TFieldsPerson) => {
   const [errors, setErrors] = useState<TErrors>({});
   const { responsibleForm, visitorForms } = fieldsPerson;
 
-  console.log(fieldsPerson, 'useValidate fieldsPerson');
-  console.log(visitorForms, 'useValidate visitorForms');
-
   useEffect(() => {
     const newErrors: TErrors = {
       visitorFormErrors: [],
@@ -49,8 +46,6 @@ export const useValidate = (fieldsPerson: TFieldsPerson) => {
         newErrors.visitorFormErrors[element.id] = errorsForVisitor;
       }
     });
-
-    console.log(newErrors, 'newErrors');
 
     setErrors(newErrors);
   }, [fieldsPerson]);
