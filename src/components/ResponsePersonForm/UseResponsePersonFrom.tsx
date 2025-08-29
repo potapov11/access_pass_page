@@ -16,6 +16,10 @@ export const useResponsePersonForm = () => {
     person_responsible_name: '',
   });
 
+  useEffect(() => {
+    console.log(fieldsPerson, 'fieldsPerson after update');
+  }, [fieldsPerson]);
+
   const formFromStore = useSelector((state) => state.form.responsibleForm);
   const AllFormFromStore = useSelector((state) => state.form);
   console.log(formFromStore, 'formFromStores');
@@ -51,12 +55,17 @@ export const useResponsePersonForm = () => {
     }
   };
 
-  const handleDataPicker: DatePickerProps['onChange'] = (dateString) => {
+  const handleDataPicker: DatePickerProps['onChange'] = (date, dateString) => {
     if (dateString) {
-      setFieldsPerson((prev) => ({
-        ...prev,
-        person_date: dateString,
-      }));
+      setFieldsPerson((prev) => {
+        const updatedFields = {
+          ...prev,
+          person_date: dateString as string,
+        };
+        dispatch(addToForm(updatedFields));
+
+        return updatedFields;
+      });
     }
   };
 

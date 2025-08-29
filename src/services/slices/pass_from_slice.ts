@@ -28,6 +28,8 @@ const formResponseSlice = createSlice({
         person_responsible_name,
       } = action.payload;
 
+      console.log(action.payload, 'action.payload');
+
       state.responsibleForm.firstname = firstname;
       state.responsibleForm.lastname = lastname;
       state.responsibleForm.person_phone = person_phone;
@@ -47,9 +49,13 @@ const formResponseSlice = createSlice({
     updateVisitorForm: (state, action) => {
       state.visitorForms = action.payload;
     },
+    updateForm: (state, action) => {
+      state.responsibleForm = action.payload.responsibleForm;
+      state.visitorForms = action.payload.visitorForms;
+    },
   },
 });
 
-export const { addToForm, addVisitorForm, updateVisitorForm } =
+export const { addToForm, addVisitorForm, updateVisitorForm, updateForm } =
   formResponseSlice.actions;
 export default formResponseSlice.reducer;
