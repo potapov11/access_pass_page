@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TFieldsPerson, SelectOption, PersonData } from '../../utils/types';
-import { useLazyGetConfirmPersonsQuery } from '../../services/api';
+import {
+  useLazyGetConfirmPersonsQuery,
+  useGetConfirmPersonsQuery,
+} from '../../services/api';
 import { useValidate } from '../hooks/UseValidate';
 import { addToForm } from '../../services/slices/pass_from_slice';
 import type { DatePickerProps } from 'antd';
@@ -16,17 +19,28 @@ export const useResponsePersonForm = () => {
     person_responsible_name: '',
   });
 
+  const { data: personsResponseList } = useGetConfirmPersonsQuery();
+
   useEffect(() => {
     console.log(fieldsPerson, 'fieldsPerson after update');
   }, [fieldsPerson]);
 
   const formFromStore = useSelector((state) => state.form.responsibleForm);
   const AllFormFromStore = useSelector((state) => state.form);
-  console.log(formFromStore, 'formFromStores');
   const dispatch = useDispatch();
 
   useEffect(() => {
     setFieldsPerson(formFromStore);
+    const { person_responsible_name: person_id } = formFromStore;
+    console.log(personsResponseList, 'personsResponseList');
+    const targetResponsePerson = personsResponseList?.find(
+      (item) => person_id === item.id
+    );
+
+    setFieldsPerson((prev) => ({
+      ...prev,
+      person_responsible_name: targetResponsePerson?.name,
+    }));
   }, [formFromStore]);
 
   const [getConfirmPersons, { isLoading }] = useLazyGetConfirmPersonsQuery();
@@ -70,10 +84,17 @@ export const useResponsePersonForm = () => {
   };
 
   const handleDropdown = (value: string) => {
-    setFieldsPerson((prev) => ({
-      ...prev,
-      person_responsible_name: value,
-    }));
+    console.log(value, 'value handleDropdown');
+
+    setFieldsPerson((prev) => {
+      const updatedFields = {
+        ...prev,
+        person_responsible_name: value,
+      };
+      dispatch(addToForm(updatedFields));
+
+      return updatedFields;
+    });
   };
 
   const openDropDown = async () => {

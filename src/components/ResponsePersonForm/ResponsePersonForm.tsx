@@ -82,6 +82,7 @@ export const ResponsePersonForm = () => {
       />
 
       <DropDown
+        value={fieldsPerson.person_responsible_name}
         onChange={handleDropdown}
         openDropDown={openDropDown}
         selectData={selectData}

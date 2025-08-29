@@ -9,12 +9,16 @@ export const DropDown = ({
   isError,
   onChange,
   errorText,
+  value,
 }: IDroDownProps) => {
   const spinner = [{ value: '', label: <Spinner /> }];
+
+  console.log(value, 'value DropDown');
 
   return (
     <div>
       <Select
+        value={value ? value : null}
         className={styles.select}
         showSearch
         placeholder="Выберите подтверждающего"
