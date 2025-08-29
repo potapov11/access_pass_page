@@ -3,11 +3,19 @@ import { createSlice } from '@reduxjs/toolkit';
 const formResponseSlice = createSlice({
   name: 'formSlice',
   initialState: {
-    firstname: '',
-    lastname: '',
-    person_phone: '',
-    person_date: '',
-    person_responsible_name: '',
+    responsibleForm: {
+      firstname: '',
+      lastname: '',
+      person_phone: '',
+      person_date: '',
+      person_responsible_name: '',
+    },
+    visitorForms: [
+      {
+        name: '',
+        id: 0,
+      },
+    ],
   },
   reducers: {
     addToForm: (state, action) => {
@@ -19,21 +27,28 @@ const formResponseSlice = createSlice({
         person_responsible_name,
       } = action.payload;
 
-      state.firstname = firstname;
-      state.lastname = lastname;
-      state.person_phone = person_phone;
-      state.person_date = person_date;
-      state.person_responsible_name = person_responsible_name;
+      state.responsibleForm.firstname = firstname;
+      state.responsibleForm.lastname = lastname;
+      state.responsibleForm.person_phone = person_phone;
+      state.responsibleForm.person_date = person_date;
+      state.responsibleForm.person_responsible_name = person_responsible_name;
     },
     reset: (state) => {
-      state.firstname = '';
-      state.lastname = '';
-      state.person_phone = '';
-      state.person_date = '';
-      state.person_responsible_name = '';
+      state.responsibleForm.firstname = '';
+      state.responsibleForm.lastname = '';
+      state.responsibleForm.person_phone = '';
+      state.responsibleForm.person_date = '';
+      state.responsibleForm.person_responsible_name = '';
+    },
+    addVisitorForm: (state, action) => {
+      state.visitorForms.push(action.payload);
+    },
+    updateVisitorForm: (state, action) => {
+      state.visitorForms = action.payload;
     },
   },
 });
 
-export const { addToForm } = formResponseSlice.actions;
+export const { addToForm, addVisitorForm, updateVisitorForm } =
+  formResponseSlice.actions;
 export default formResponseSlice.reducer;

@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from './PassCreatePage.module.scss';
-import { Space } from 'antd';
 import { ResponsePersonForm } from '../../components/ResponsePersonForm/ResponsePersonForm';
-import { TextInput } from '../../components/TextInput/TextInput';
 import { Header } from '../../layouts/Header/Header';
+import { VisitorForms } from '../../components/VisitorForms/VisitorForms';
 
 export const PassCreatePage = () => {
   return (
@@ -14,6 +13,7 @@ export const PassCreatePage = () => {
           <div style={{ width: '50%', border: '1px solid black' }}>hello</div>
           <ResponsePersonForm />
         </div>
+        <VisitorForms />
       </section>
     </div>
   );

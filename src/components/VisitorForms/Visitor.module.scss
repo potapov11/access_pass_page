@@ -1,0 +1,20 @@
+.visitor_form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 20px;
+
+  &_title {
+    text-align: center;
+  }
+
+  &_box {
+    flex-grow: 1;
+  }
+
+  &_wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
