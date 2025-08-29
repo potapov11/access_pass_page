@@ -51,7 +51,7 @@
       "email": "fedorova_maria@company.ru"
     }
   ],
-  "visitor_forms": [
+  "forms": [
     {
       "responsibleForm": {
         "firstname": "sergey",
@@ -85,6 +85,23 @@
         }
       ],
       "id": 2
+    },
+    {
+      "responsibleForm": {
+        "firstname": "qwe",
+        "lastname": "qwe",
+        "person_phone": "72344323423",
+        "person_date": "",
+        "person_responsible_name": ""
+      },
+      "visitorForms": [
+        {
+          "name": "rty",
+          "id": 0,
+          "phone": "74234234234"
+        }
+      ],
+      "id": 3
     }
   ]
 }

@@ -7,12 +7,17 @@ export const apiSlice = createApi({
     getConfirmPersons: builder.query({
       query: () => '/confirm_persons',
     }),
-    addVisitorForm: builder.mutation({
-      query: (visitorData) => ({
-        url: '/visitor_forms',
+
+    //forms
+    addForm: builder.mutation({
+      query: (form) => ({
+        url: '/forms',
         method: 'POST',
-        body: visitorData,
+        body: form,
       }),
+    }),
+    getForms: builder.query({
+      query: () => '/forms',
     }),
   }),
   reducerPath: 'api',
@@ -21,5 +26,7 @@ export const apiSlice = createApi({
 export const {
   useGetConfirmPersonsQuery,
   useLazyGetConfirmPersonsQuery,
-  useAddVisitorFormMutation,
+  //forms
+  useAddFormMutation,
+  useGetFormsQuery,
 } = apiSlice;
