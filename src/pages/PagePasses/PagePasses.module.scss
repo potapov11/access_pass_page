@@ -1,0 +1,9 @@
+.page_passes {
+  padding: 20px 0 0 0;
+  background-color: var(--background-white);
+  height: calc(100vh - 20px);
+
+  &_title {
+    text-align: center;
+  }
+}

@@ -4,14 +4,14 @@ import { Button } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { addVisitorForm } from '../../services/slices/pass_from_slice';
 import { visitorsDummyObj } from '../../utils/vars';
-import { useAddVisitorFormMutation } from '../../services/api';
+import { useAddFormMutation } from '../../services/api';
 
 export const VisitorForms = () => {
   const visitorsForm = useSelector((state) => state.form.visitorForms);
   const form = useSelector((state) => state.form);
   console.log(visitorsForm, 'visitorsForm store');
   const dispatch = useDispatch();
-  const [addVisitorFormPost] = useAddVisitorFormMutation();
+  const [addVisitorFormPost] = useAddFormMutation();
 
   const handleFormPost = async () => {
     try {

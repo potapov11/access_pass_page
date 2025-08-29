@@ -17,6 +17,11 @@ export const Header = () => {
               </Link>
             </li>
             <li className={styles.header_list_item}>
+              <Link to="/page_passes" className={styles.nav_link}>
+                Пропуска
+              </Link>
+            </li>
+            <li className={styles.header_list_item}>
               <Link to="/passcreate" className={styles.nav_link}>
                 Pass
               </Link>
