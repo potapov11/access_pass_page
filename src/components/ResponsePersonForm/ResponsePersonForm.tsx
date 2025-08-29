@@ -4,6 +4,11 @@ import { PhoneInputComponent } from '../PhoneInput/PhoneInput';
 import { PersonDatePicker } from '../PersonDatePicker/PersonDatePicker';
 import { DropDown } from '../DropDown/DropDown';
 import { useResponsePersonForm } from './UseResponsePersonFrom';
+import { useParams } from 'react-router-dom';
+import { useLazyGetFormsByIdQuery } from '../../services/api';
+import { useEffect } from 'react';
+import { updateForm } from '../../services/slices/pass_from_slice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const ResponsePersonForm = () => {
   const {
@@ -17,6 +22,28 @@ export const ResponsePersonForm = () => {
     openDropDown,
     selectData,
   } = useResponsePersonForm();
+
+  const { id } = useParams();
+  console.log(id, 'id useParams');
+  const [getFormsById] = useLazyGetFormsByIdQuery();
+  const dispatch = useDispatch();
+
+  const handleGetFromById = async () => {
+    const { data } = await getFormsById(id);
+    if (data) {
+      dispatch(updateForm(data));
+    }
+    console.log(data, 'res handleGetFromById');
+  };
+
+  const formFromStore = useSelector((state) => state.form.responsibleForm);
+  const AllFormFromStore = useSelector((state) => state.form);
+  console.log(formFromStore, 'formFromStores');
+  console.log(AllFormFromStore, 'AllFormFromStore formFromStores');
+
+  useEffect(() => {
+    handleGetFromById();
+  }, [id]);
 
   return (
     <div className={styles.form}>
@@ -49,7 +76,10 @@ export const ResponsePersonForm = () => {
         errorText={errors.person_phone}
       />
 
-      <PersonDatePicker onChange={handleDataPicker} />
+      <PersonDatePicker
+        value={fieldsPerson.person_date}
+        onChange={handleDataPicker}
+      />
 
       <DropDown
         onChange={handleDropdown}

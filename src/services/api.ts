@@ -19,6 +19,9 @@ export const apiSlice = createApi({
     getForms: builder.query({
       query: () => '/forms',
     }),
+    getFormsById: builder.query({
+      query: (id) => `/forms/${id}`,
+    }),
   }),
   reducerPath: 'api',
 });
@@ -29,4 +32,5 @@ export const {
   //forms
   useAddFormMutation,
   useGetFormsQuery,
+  useLazyGetFormsByIdQuery,
 } = apiSlice;
