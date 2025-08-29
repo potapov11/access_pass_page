@@ -6,6 +6,7 @@ export const useValidate = (fieldsPerson: TFieldsPerson) => {
   const { responsibleForm, visitorForms } = fieldsPerson;
 
   console.log(fieldsPerson, 'useValidate fieldsPerson');
+  console.log(visitorForms, 'useValidate visitorForms');
 
   useEffect(() => {
     const newErrors: TErrors = {
@@ -30,12 +31,22 @@ export const useValidate = (fieldsPerson: TFieldsPerson) => {
       newErrors.person_responsible_name = 'Необходимо выбрать подтверждающего';
     }
 
+    // Проверка форм посетителей
     visitorForms.forEach((element, index) => {
+      const errorsForVisitor = {
+        id: index,
+      };
+
       if (!element.name) {
-        newErrors.visitorFormErrors.push({
-          id: index,
-          error_name: 'Поле имя не должно быть пустым',
-        });
+        errorsForVisitor.error_name = 'Поле имя не должно быть пустым';
+      }
+      if (!element.phone || element.phone.length < 11) {
+        errorsForVisitor.error_phone =
+          'Поле номер телефона не должно быть меньше 11 знаков';
+      }
+
+      if (Object.keys(errorsForVisitor).length > 0) {
+        newErrors.visitorFormErrors[element.id] = errorsForVisitor;
       }
     });
 
