@@ -5,8 +5,13 @@ import { PassesForm } from '../PassesForm/PassesForm';
 import styles from './PassesForms.module.scss';
 
 export const PassesForms = () => {
-  const { data: passes, isLoading, isError } = useGetFormsQuery();
-  console.log(passes, 'passes');
+  const {
+    data: passes,
+    isLoading,
+    isError,
+  } = useGetFormsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
   if (isError) return <ErrorText />;
   if (isLoading) return <Spinner />;

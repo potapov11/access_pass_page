@@ -9,7 +9,6 @@ import { useAddFormMutation } from '../../services/api';
 export const VisitorForms = () => {
   const visitorsForm = useSelector((state) => state.form.visitorForms);
   const form = useSelector((state) => state.form);
-  console.log(visitorsForm, 'visitorsForm store');
   const dispatch = useDispatch();
   const [addVisitorFormPost] = useAddFormMutation();
 

@@ -24,7 +24,6 @@ export const ResponsePersonForm = () => {
   } = useResponsePersonForm();
 
   const { id } = useParams();
-  console.log(id, 'id useParams');
   const [getFormsById] = useLazyGetFormsByIdQuery();
   const dispatch = useDispatch();
 
@@ -33,13 +32,10 @@ export const ResponsePersonForm = () => {
     if (data) {
       dispatch(updateForm(data));
     }
-    console.log(data, 'res handleGetFromById');
   };
 
   const formFromStore = useSelector((state) => state.form.responsibleForm);
   const AllFormFromStore = useSelector((state) => state.form);
-  console.log(formFromStore, 'formFromStores');
-  console.log(AllFormFromStore, 'AllFormFromStore formFromStores');
 
   useEffect(() => {
     handleGetFromById();
@@ -82,6 +78,7 @@ export const ResponsePersonForm = () => {
       />
 
       <DropDown
+        value={fieldsPerson.person_responsible_name}
         onChange={handleDropdown}
         openDropDown={openDropDown}
         selectData={selectData}
